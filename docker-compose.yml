@@ -1,0 +1,17 @@
+version: '3'
+networks:
+  default:
+    external:
+      name: zetel-orders-service_default
+services:
+  payments:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - '3002:3002'
