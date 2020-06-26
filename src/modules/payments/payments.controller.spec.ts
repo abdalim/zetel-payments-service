@@ -1,25 +1,25 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PaymentsController } from './payments.controller';
-import { PaymentsService } from './payments.service';
-import { VerifyResult } from './payments.dto';
+import { Test, TestingModule } from '@nestjs/testing'
+import { PaymentsController } from './payments.controller'
+import { PaymentsService } from './payments.service'
+import { VerifyResult } from './payments.dto'
 
 describe('Payments Controller', () => {
-  let controller: PaymentsController;
-  let paymentsService: PaymentsService;
+  let controller: PaymentsController
+  let paymentsService: PaymentsService
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [PaymentsService],
       controllers: [PaymentsController],
-    }).compile();
+    }).compile()
 
-    controller = module.get<PaymentsController>(PaymentsController);
+    controller = module.get<PaymentsController>(PaymentsController)
     paymentsService = module.get<PaymentsService>(PaymentsService)
-  });
+  })
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
+    expect(controller).toBeDefined()
+  })
 
   describe('POST /verify', () => {
     it('should return verify result', async () => {
@@ -32,8 +32,12 @@ describe('Payments Controller', () => {
       const mockVerifyResponse = {
         status: VerifyResult.Confirmed,
       }
-      jest.spyOn(paymentsService, 'verify').mockReturnValueOnce(mockVerifyResponse)
-      expect(await controller.verify(mockVerifyOrderDto)).toEqual(mockVerifyResponse)
+      jest
+        .spyOn(paymentsService, 'verify')
+        .mockReturnValueOnce(mockVerifyResponse)
+      expect(await controller.verify(mockVerifyOrderDto)).toEqual(
+        mockVerifyResponse,
+      )
     })
   })
-});
+})
