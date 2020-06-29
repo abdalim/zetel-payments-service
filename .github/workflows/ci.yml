@@ -38,4 +38,4 @@ jobs:
             docker service update --image docker.pkg.github.com/abdalim/zetel-payments-service/zetel-payments-service:latest zetel_payments --force
           host: ${{ secrets.HOST }}
           user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY}}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
